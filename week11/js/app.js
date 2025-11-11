@@ -1,12 +1,6 @@
-import {loadQuotes} from "../quoteManagement"
-document.addEventListener('DOMContentLoaded', async () =>{
-    const quotes = await loadQuotes()
-    console.log(quotes)
-})
-
 //ui handles
 
-import { loadQuotes } from "./quoteManagement.js"
+import {loadQuotes} from "./quoteManagement.js"
 
 document.addEventListener("DOMContentLoaded", async () => {
   const quoteList = document.getElementById("quoteList")
@@ -47,12 +41,44 @@ function newQuoteElement(quote) {
   deleteButton.className = "delete"
   deleteButton.dataset.id = quote.id
   deleteButton.textContent = "Delete"
-  divButtons.appendChild(deleteButton)
 
+  deleteButton.addEventListener("click", handleDelete)
+
+  divButtons.appendChild(deleteButton)
   divEle.appendChild(divButtons)
 
   return divEle
 }
+//ADD
+const formEle = document.getElementById("quoteForm")
+formEle.addEventListener("submit", handleAddEdit)
+
+function handleAddEdit(e){
+  e.preventdefault()
+  console.log(formEle.quoteId.value)
+  console.log(formEle.content.value)
+  console.log(formEle.author.value)
+}
+
+//DELETE
+async function handleDelete(e){
+  const ans = confirm('Do you want to delete')
+  if(ans === true){ //or if(ans)
+    //console.log(e.target.dataset.id)
+    const id = e.target.dataset.id
+    try{
+    const deleteQuoteId = await deleteQuote(id)
+    if(deleteQuoteId){
+        const divDeleteQuote = document.querySelector(`div[data-id="${id}"`)
+        const divQuoteList = document.getElementById('quoteList')
+        divQuoteList.removeChild(divDeleteQuote)
+    }
+  } catch (e){
+    alert(e.message)
+    }
+  }
+}
+export {handleDelete}
 /*
 <div class="quote-card" data-id="1">
    <p>No one is perfect</p>
