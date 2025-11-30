@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reserve Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/keycloak-js@latest/dist/keycloak.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="userInfo" style="margin: 10px; font-weight: bold;"></div>
+  <section class="ecors-reserve-container">
+
+    <!-- Declaration Status -->
+    <div class="ecors-declared-plan">
+      <span>Declaration Status:</span>
+      <!-- <span id="ecors-status-text">Not Declared</span> -->
+      <span id="ecors-status-text">Loading...</span>
+    </div>
+
+    <!-- Declare your major box -->
+    <div class="ecors-declare-box">
+      <h3>Declare Your Major</h3>
+
+      <label for="ecors-dropdown-plan" class="ecors-label">Select Major:</label>
+
+      <select id="ecors-dropdown-plan" class="ecors-dropdown-plan">
+        <option value="">-- Select Major --</option>
+      </select>
+      <!-- ▼▼ เพิ่มอันนี้ใหม่ ▼▼ -->
+      <div id="ecors-plan-menu" class="ecors-plan-menu"></div>
+      <!-- ▲▲ เพิ่มอันนี้ใหม่ ▲▲ -->
+
+      <button class="ecors-button-declare" id="ecors-button-declare">
+        Declare
+      </button>
+    </div>
+
+    <div id="changeAndCancel">
+      <button class="ecors-button-change" id="ecors-button-change" style="display:none;">
+        Change plan
+      </button>
+      <button class="ecors-button-cancel" id="ecors-button-cancel" style="display:none;">
+          Cancel Declaration
+      </button>
+    </div>
+
+
+  </section>
+  <div id="footer"></div>
+  <!-- <div id="ecors-dialog" class="dialog-overlay" style="display:none;">
+  <div class="dialog-box">
+    <p id="ecors-dialog-message"></p>
+    <button id="ecors-dialog-ok">OK</button>
+  </div>
+</div> -->
+  <div class="ecors-dialog" id="ecors-dialog" style="display:none;">
+    <div class="ecors-dialog-box">
+      <p class="ecors-dialog-message" id="ecors-dialog-message"></p>
+      <button class="ecors-button-dialog" id="ecors-dialog-ok">Ok</button>
+      <button class="ecors-button-cancel" id="ecors-dialog-cancel">Cancel Declaration</button>
+      <button class="ecors-button-keep" id="ecors-dialog-keep">Keep Declaration</button>
+    </div>
+  </div>
+  <script type="module" src="./src/reserve.js"></script>
+</body>
+
+</html>
